@@ -16,6 +16,7 @@ import { getPokemonsFromApiAsync } from './services/pokemonservice';
 
 import {PokemonScreen} from './screens/pokemonscreen'
 import {PokemonsScreen} from './screens/pokemonsscreen'
+import {PokemonMovesScreen} from './screens/pokemonmovesscreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={PokemonsScreen} />
         <Stack.Screen name="Pokemon" component={PokemonScreen} />
+        <Stack.Screen name="PokemonMoves" component={PokemonMovesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

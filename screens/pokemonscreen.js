@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ActivityIndicator,
+  Button
 } from 'react-native';
 
 
@@ -21,7 +22,7 @@ export function PokemonScreen({ route, navigation }) {
   const { pokemonName, pokemonUrl } = route.params;
 
   let pname = pokemonName.toLowerCase();
-  let pokemonIndex=pokemonUrl.split('/')[6]
+  let pokemonIndex = pokemonUrl.split('/')[6]
   console.log(pokemonIndex)
 
   /**
@@ -39,7 +40,7 @@ export function PokemonScreen({ route, navigation }) {
       .then((data) => setPokemon(data))
       .catch((error) => setErr(error))
       .finally(() => setLoading(false));
-  },[]); 
+  }, []);
   //Empty brackets mean that pokemons are only fetched when screen is loaded.
 
   if (loading) {
@@ -71,9 +72,18 @@ export function PokemonScreen({ route, navigation }) {
         <Text style={{ fontSize: 20 }}>Pokemon weight {pokemon.weight}</Text>
         <Text style={{ fontSize: 20 }}>Pokemon height {pokemon.height}</Text>
         <Text style={{ fontSize: 20 }}>Pokemon moves {pokemon.moves.length}</Text>
+        <Button
+         title="Show moves"
+          onPress={() =>
+            navigation.navigate('PokemonMoves', {
+              pokemonName: pokemon.name, 
+              moves: pokemon.moves
+            })
+          }>
+        </Button>
       </View>
       <View style={{ height: '50%', flex: 1, justifyContent: 'flex-end' }}>
-        <Image style={{height: '100%'}} source={{uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}}/>
+        <Image style={{ height: '100%' }} source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png` }} />
       </View>
     </View>
   );
